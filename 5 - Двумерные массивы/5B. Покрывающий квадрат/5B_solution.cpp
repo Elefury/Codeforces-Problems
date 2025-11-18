@@ -5,33 +5,28 @@
 using namespace std;
 int main ()
 {
-	int n,m,g=0,ans=0;
+	int n,m,maxi=0,maxj=0,mini=1000,minj=1000;
 	cin >> n >> m;
 	char a[1005][1005];
-
+ 
 	for (int i=0; i<n; i++) {
 		for (int j=0; j<m; j++) {
 			cin >> a[i][j];
 			if (a[i][j]=='*') {
-				g++;
-		}
-			if (g==m) {
-				ans++;
+				if (i>maxi) {
+					maxi=i;
+				}
+				if (i<mini) {
+					mini=i;
+				}
+				if (j>maxj) {
+					maxj=j;
+				}
+				if (j<minj) {
+					minj=j;
+				}
 			}
 		}
-		g=0;
 	}
-
-	for (int j=0; j<m; j++) {
-		for (int i=0; i<n; i++) {
-			if (a[i][j]=='*') {
-				g++;
-			}
-			if (g==n) {
-				ans++;
-			}
-		}
-		g=0;
-	}
-	cout << ans;
+	cout << max(maxi-mini+1,maxj-minj+1);
 }
